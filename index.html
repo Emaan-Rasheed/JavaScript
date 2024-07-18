@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script>
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "Paragraph changed."
+      }
+    </script>
+</head>
+<body>
+<h2>Demo JavaScript in Head</h2>
+
+<p id="demo">A Paragraph.</p>
+<button type="button" onclick="myFunction()">Try it</button>
+<p id="demo1"></p>
+<h2>JavaScript Variables</h2>
+<p id="demo2"></p>
+<h2>JavaScript const</h2>
+<p id="demo3"></p>
+<h1>JavaScript Arithmetic</h1>
+<h2>Arithmetic Operations</h2>
+<p id="demo4"></p>
+<script>
+    document.getElementById("demo1").innerHTML=10+20;
+    document.write(5+5);
+    window.alert("new javascript program");
+    let carName = "tesla";
+    document.getElementById("dmeo2").innerhtml= carName;
+    try {
+        const PI = 3.141592653589793;
+        PI = 3.14;
+      }
+      catch (err) {
+        document.getElementById("demo3").innerHTML = err;
+      }
+      let a = 3;
+let x = (100 + 50) * a;
+document.getElementById("demo4").innerHTML = x;
+</script>
+</body>
+</html>
