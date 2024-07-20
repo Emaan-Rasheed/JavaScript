@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+        <title>Javascript Basics</title>
+
+    </head>
+    <body>
+        <p id="demo0"></p>
+        <p id="demo01"></p>
+        <p id="demo02"></p>
+        <p id="demo03"></p>
+        <p id="demo04"></p>
+        <p id="demo05"></p>
+        <p id="demo06"></p>
+        <p id="demo07"></p>
+        <p id="demo08"></p>
+        <p id="demo09"></p>
+        <p id="demo99"></p>
+        <p id="text"></p>
+        <p id="text3"></p>
+        <p id="word"></p>
+        <p id="name"></p>
+        <p id="charac"></p>
+        <p id="code"></p>
+        <p id="charact"></p>
+        <p id="slice"></p>
+        <p id="uppercase"></p>
+        <p id="trim"></p>
+        <p id="padstart"></p>
+        <button onclick="abc()">Click me</button>
+        <p id="replace">Please visit Microsoft and Microsoft!</p>
+        
+        <script>
+            let cars={type:"Fiat", model:"500", color:"white"}
+            document.getElementById("demo0").innerHTML= cars.model="600";
+            //document.getElementById("demo1").innerHTML= cars.number="900"; 
+            cars.number="900";
+            cars.number1="9800";
+            cars.number2="8800";
+            delete cars.number1;
+            delete cars.type;
+            console.log(cars);
+            let person ={};
+            person.firstname="Emaan";
+            person.lastname="Rasheed";
+            person.age=21;
+            document.getElementById("demo01").innerHTML="Name: " + person.firstname + " " + person.lastname;
+            person.name= function(){
+                return (this.firstname + " " + this.lastname).toUpperCase();
+            }
+            document.getElementById("demo02").innerHTML="Father name: " + person.name();
+            //display using loop
+            let text ="";
+            for (let x in cars) {
+                text += cars[x] + " ";
+            };
+            document.getElementById("demo03").innerHTML=text;
+            //display values
+            const data = {
+                name: "John",
+                age: 30,
+                city: "New York"
+              };
+            const myarray = Object.values(data);
+            document.getElementById("demo04").innerHTML= myarray;
+            //display entries
+            const entries1 ={entry:1, entry:2, entry:3};
+            let text1=" ";
+            for(let [entry,numb] of object.entries(entries1)){
+                text1 += entry+ ":"+ numb + "<br>";
+            }
+            document.getElementById("demo05").innerHTML = text1;
+            //display with Json
+            document.getElementById("demo06").innerHTML = JSON.stringify(person);
+            //Constructor function
+            function Persons(name,age,eye)
+            {
+                this.name=name;
+                this.age=age;
+                this.eye=eye;
+            };
+            const person1 = new Persons("emaan", 21, "black");
+            document.getElementById("demo07").innerHTML=person1.age;
+            document.getElementById("text").innerHTML=text2.length;
+        </script><br>
+            <button onclick="document.getElementById('demo08').innerHTML=Date()">Display Time</button><br>
+        <script>
+            // string length
+            let text2="abcsgsvhjsjckbdlknc";
+            document.getElementById("text").innerHTML= "Length of text is: "+ text2.length;
+            //Escape Characters
+            let text3= "We are the so called \"Vicking\" of the north.";
+            document.getElementById("text3").innerHTML= text3;
+            //Javascript as objects
+            let word = new String("Emaan");
+            document.getElementById("word").innerHTML= word;
+            //string concat
+            let word1="Emaan";
+            let word2="Rasheed";
+            let name = word1.concat(" ", word2);
+            document.getElementById("name").innerHTML= "Name: " + name;
+            // string charAt
+            let uni = "Air University";
+            document.getElementById("charac").innerHTML="The character at 3rd index is: " + uni.charAt(3);
+            //string charCodeAt
+            document.getElementById("code").innerHTML="The char code of A is: " + uni.charCodeAt(0);
+            //string at()
+            document.getElementById("charact").innerHTML="The character at 4th index is: " + uni.at(4);
+            //string slice
+            document.getElementById("slice").innerHTML= "Extracted part: " + uni.slice(4,10);
+            // string ToUpperCase & ToLowerCase
+            document.getElementById("uppercase").innerHTML="Upper Case: " + uni.toUpperCase();
+            //string trim
+            let car = "     Fortuner!    "
+            let car2 = car.trim();
+            document.getElementById("trim").innerHTML= "Length text1 = " 
+            + car.length + "<br>Length text2 = " + car2.length;
+            //string padstart
+            let numb = "10";
+            numb = numb.padStart(5,"!");
+            document.getElementById("padstart").innerHTML= "Pad Start: " + numb;
+            //string replace
+            function abc(){
+                let textabc = document.getElementById("replace").innerHTML;
+                document.getElementById("replace").innerHTML=textabc.replace(/Microsoft/g, "W3School");
+            }
+
+        </script>
+    </body>
+</html>
