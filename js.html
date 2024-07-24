@@ -28,8 +28,34 @@
         <p id="uppercase"></p>
         <p id="trim"></p>
         <p id="padstart"></p>
+        <P id="array"></P>
+        <p id="ff"></p>
+        <p id="f"></p>
+        <p id="jj"></p>
+        <p id="nn"></p>
+        <p id="nn0"></p>
+        <p id="oo0"></p>
+        <p id="ii0"></p>
+        <p id="kk0"></p>
+        <p id="jj1"></p>
+        <p id="m"></p>
+        <p id="push"></p>
+        <p id="result"></p>
+        <p id="pos"></p>
+        <p id="include"></p>
+        <p id="find"></p>
+        <p id="findindex"></p>
+        <p id="last"></p>
+        <p id="sort"></p>
+        <p id="tosort"></p>
+        <p id="min"></p>
+        <p id="map"></p>
+        <p>Click the button to sort the array in random order.</p>
+        <button onclick="sort()">Try it</button>
+        <p id="math"></p>
         <button onclick="abc()">Click me</button>
         <p id="replace">Please visit Microsoft and Microsoft!</p>
+        
         
         <script>
             let cars={type:"Fiat", model:"500", color:"white"}
@@ -67,12 +93,12 @@
             //display entries
             const entries1 ={entry:1, entry:2, entry:3};
             let text1=" ";
-            for(let [entry,numb] of object.entries(entries1)){
+            for(let [entry,numb] of Object.entries(entries1)){
                 text1 += entry+ ":"+ numb + "<br>";
             }
             document.getElementById("demo05").innerHTML = text1;
             //display with Json
-            document.getElementById("demo06").innerHTML = JSON.stringify(person);
+            document.getElementById("demo06").innerHTML = JSON.stringify(data);
             //Constructor function
             function Persons(name,age,eye)
             {
@@ -82,7 +108,7 @@
             };
             const person1 = new Persons("emaan", 21, "black");
             document.getElementById("demo07").innerHTML=person1.age;
-            document.getElementById("text").innerHTML=text2.length;
+            //document.getElementById("text").innerHTML=text2.length;
         </script><br>
             <button onclick="document.getElementById('demo08').innerHTML=Date()">Display Time</button><br>
         <script>
@@ -102,7 +128,7 @@
             document.getElementById("name").innerHTML= "Name: " + name;
             // string charAt
             let uni = "Air University";
-            document.getElementById("charac").innerHTML="The character at 3rd index is: " + uni.charAt(3);
+            document.getElementById("charac").innerHTML="The character at 3rd index is: " + uni.charAt(0);
             //string charCodeAt
             document.getElementById("code").innerHTML="The char code of A is: " + uni.charCodeAt(0);
             //string at()
@@ -125,7 +151,84 @@
                 let textabc = document.getElementById("replace").innerHTML;
                 document.getElementById("replace").innerHTML=textabc.replace(/Microsoft/g, "W3School");
             }
-
-        </script>
+            //js arrays
+            const car11 = [ "SAAB", "VOLVO", "BMW"];
+            document.getElementById("array").innerHTML = car11;
+            car11[0]="V8";
+            document.getElementById("array").innerHTML = car11;
+            const fruit11 = ["Banana", "Orange", "Apple", "Mango"];
+            let size = fruit11.length;
+            document.getElementById("ff").innerHTML = size;
+            fruit11.push("Lemon");
+            document.getElementById("f").innerHTML = fruit11;
+            //nested arrays and objects
+            let x="";
+            const myObj = {
+                name:"John",
+                age: 50,
+                car12:[
+                {name:"Ford", models:["Fiesta", "Focus", "Mustang"]},
+                {name:"BMW", models:["320", "X3", "X5"]},
+                {name:"Fiat", models:["500", "Panda"]}]
+            }
+            for (let i in myObj.car12) {
+                x += "<h2>" + myObj.car12[i].name + "</h2>";
+                for (let j in myObj.car12[i].models) {
+                  x += myObj.car12[i].models[j] + "<br>";
+                }
+              }
+              document.getElementById("jj").innerHTML = x;
+              const fruit10 = ["Banana", "Orange", "Apple", "Mango"];
+              let fruit13 = fruit10[2];
+              document.getElementById("nn").innerHTML = fruit13;
+              fruit10.pop();
+              document.getElementById("nn0").innerHTML = fruit10;
+              fruit10.shift();
+              document.getElementById("oo0").innerHTML = fruit10;
+              fruit10.unshift("Lemon");
+              document.getElementById("ii0").innerHTML = fruit10;
+              fruit10[fruit10.length]="kiwi";
+              document.getElementById("kk0").innerHTML = fruit10;
+              fruit10.splice(2, 0, "Lem", "abc");
+              document.getElementById("jj1").innerHTML = fruit10;
+              const months = ["Jan", "Feb", "Mar", "Apr"];
+              const spliced = months.toSpliced(0, 2);
+              document.getElementById("m").innerHTML = spliced;
+              months.push("May", "June", "July", "Aug", "Sep");
+              document.getElementById("push").innerHTML = months;
+              const citrus = months.slice(1,7);
+              document.getElementById("result").innerHTML = citrus;
+              let position = months.indexOf("Sep");
+              document.getElementById("pos").innerHTML = "Sep is found in position " + position;
+              document.getElementById("include").innerHTML = months.includes("Aug");
+              const numberss = [2, 7, 17, 23, 29];
+              let first = numberss.find(myFun);
+              document.getElementById("find").innerHTML = "First number over 18 is " + first;
+              function myFun(value, index, array) {
+               return value > 18;}
+               document.getElementById("findindex").innerHTML = "First number over 18 is " + numberss.findIndex(myFun);
+               let x1="";
+               const temp = [21,22,34,6,56,9,28,77,41]
+               let high=temp.findLast(x1 => x1 > 40);
+               document.getElementById("last").innerHTML = "The last temperature over 40 was " + high;
+               fruit10.sort();
+               document.getElementById("sort").innerHTML=fruit10;
+               document.getElementById("tosort").innerHTML=months.toSorted();
+               const points = [40, 100, 1, 5, 25, 10];
+               //document.getElementById("demo").innerHTML = points;  
+              function sort() {
+              //points.sort(function(){return 0.5 - Math.random()});
+              document.getElementById("math").innerHTML = points;}
+              function ArrayMin(arr){
+             return Math.max.apply(null,arr)
+              }
+             document.getElementById("min").innerHTML=ArrayMin(temp);
+              const numbers10 = [45, 4, 9, 16, 25];
+              const numbers20= numbers10.map(mapfun);
+              document.getElementById("map").innerHTML = numbers20;
+              function mapfun(value, index, array) {
+              return value * 3;}
+               
+</script>
     </body>
 </html>
