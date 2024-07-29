@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main-content{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            border: 1px;
+            padding: 20px;
+            height:fit-content;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main-content input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .main-content button {
+            padding: 10px 20px;
+            border: none;
+            background-color:aqua;
+            color:black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .main-content button:hover {
+            background-color: #383d39;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main-content">
+    <input type="text" id="city" placeholder="Enter a city ...">
+    <button onclick="myfunction()">Search</button>
+</div>
+<div id="result">
+    <h2 id="country"></h2>
+    <h2 id="city"></h2>
+    <h2 id="Desc"></h2>
+    <h2 id="temp"></h2>
+    <h2 id="icon"></h2>
+</div>
+    <script>
+        function myfunction(){
+            const city = document.getElementById('city').value;
+            const apiKey = "0c309aff29364454354a4b94ab9ot995";
+         const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+         console.log(apiUrl)
+        fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+            document.getElementById("country").innerHTML="Country: " + data.country;
+            document.getElementById("Desc").innerHTML="Description: " + data.condition.description;
+            document.getElementById("temp").innerHTML="Temp: " + data.temperature.current;
+           document.getElementById("icon").innerHTML = "Icon: " +"<br>"+ "<img src='" +
+            data.condition.icon_url + "'>";
+            console.log(data);
+          //Console.log(('Data received:', data));
+          //Console.log(('Data received:', data.city));
+          //Console.log(('Data received:', data.condition.description));
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+        }
+    </script>
+    
+</body>
+</html>

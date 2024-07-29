@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basics JS</title>
+    </head>
+    <body>
+        <h1>JS ForEach</h1>
+        <p id="foreach"></p>
+        <h1>JS Array Map</h1>
+        <p id="map"></p>
+        <h1>JS Array FlatMap</h1>
+        <p id="flatmap"></p>
+        <h1>JS Array Filter</h1>
+        <p id="filter"></p>
+        <h1>JS Array Reduce</h1>
+        <p id="reduce"></p>
+        <h1>JS Array Every</h1>
+        <p id="every"></p>
+        <h1>JS Array Some</h1>
+        <p id="some"></p>
+        <h1>JS Array From</h1>
+        <p id="from"></p>
+        <h1>JS Array Keys</h1>
+        <p id="keys"></p>
+        <h1>JS Array Entries</h1>
+        <p id="entries"></p>
+        <h1>JS Array With</h1>
+        <p id="with"></p>
+        <h1>JS Array Spread</h1>
+        <p id="spread"></p>
+        <h1>JS Date</h1>
+        <p id="date"></p>
+        <p id="date1"></p>
+        <p id="getmonth"></p>
+        <p id="getday"></p>
+        <p id="date.now"></p>
+        <h1>JS Math PI</h1>
+        <p id="pi"></p>
+        <h1>JS Math NL</h1>
+        <p id="nl"></p>
+        <h1>JS Math SR</h1>
+        <p id="sr"></p>
+        <h1>Number to Integer</h1>
+        <p id="round"></p>
+        <p id="ceil"></p>
+        <p id="floor"></p>
+        <p id="trunc"></p>
+        <p id="sign"></p>
+        <p id="power"></p>
+        <p id="abs"></p>
+        <p id="random"></p>
+        <h2>JavaScript Comparisons</h2>
+        <p>Input your age and click</p>
+        <input id="age" value="18" />
+        <button onclick="myFunction()">Try it</button>
+        <p id="demo"></p>
+
+        <script>
+        //array iteration methods
+            const number1=[{name:"jndk",uni:"sjbn"}, {name:"kfn",uni:"bsjb"}];
+            let txt="";
+            
+            number1.forEach((a,index) =>{
+                console.log(a.name+ "" +a.uni +"--------"+index)
+                txt += a.name +" "+ a.uni + "   " + index +"<br>";
+            });
+            document.getElementById("foreach").innerHTML=txt;
+            //function foreachfun(value,index,array){
+              //  txt += value +"<br>";
+            //}
+            //map
+            const number2 =number1.map((b,index1)=>{console.log(b.name + "map" + b.uni+ "   " +index1+"<br>")} );
+            document.getElementById("map").innerHTML=number2;
+        
+               // return value *  3;
+            
+            //flat map
+            let x="";
+            const arr=[1,2,3,4,5];
+            const newarr =arr.flatMap((x) => x*2);
+            document.getElementById("flatmap").innerHTML=newarr;
+            //filter
+            const randomnum=[20,70,40,67,2,8,0.13,19]
+            const over18=randomnum.filter(over18fun);
+            document.getElementById("filter").innerHTML=over18;
+            function over18fun(value,index,array){
+                return value > 18;
+            }
+            //reduce
+            let sum=randomnum.reduce(reducefun);
+            document.getElementById("reduce").innerHTML=sum;
+            function reducefun(total,value,index,array){
+                return total+value;
+            }
+            //every
+            document.getElementById("every").innerHTML=randomnum.every(over18fun);
+            //some
+            document.getElementById("some").innerHTML=randomnum.some(over18fun);
+            //from
+            const alphabet=Array.from("ABSJWFOJ");
+            document.getElementById("from").innerHTML=alphabet;
+            //keys
+            const fruits = ["Banana", "Orange", "Apple", "Mango"];
+            const keys = fruits.keys();
+            let text="";
+            for (let x of keys){
+                text += x + "<br>";
+            }
+            document.getElementById("keys").innerHTML=text;
+            //entries
+            const f = fruits.entries();
+            for(let i of f){
+                document.getElementById("entries").innerHTML+= i +"<br>";
+            }
+            //with
+            const months =["Jan","Mar","April","May","June"]
+            const newmon = months.with(1,"Feb");
+            document.getElementById("with").innerHTML=newmon;
+            //spread
+            const q1 = ["Jan", "Feb", "Mar"];
+            const q2 = ["Apr", "May", "Jun"];
+            const q3 = ["Jul", "Aug", "Sep"];
+            const q4 = ["Oct", "Nov", "May"];
+            const year=[...q1, ...q2, ...q3, ...q4];
+            document.getElementById("spread").innerHTML=year;
+            //date
+            const d = new Date();
+            console.log(d.getFullYear());
+            console.log(d.getMonth()+1);
+            console.log(d.getDate());
+            console.log(d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear());
+
+            document.getElementById("date").innerHTML=d;
+            const d1 = new Date(2018, 11, 24, 10, 33, 30);
+            document.getElementById("date1").innerHTML = d1;
+            //get month
+            const month = ["January","February","March","April"
+            ,"May","June","July","August","September","October","November","December"];
+            const d2 = new Date("2021-03-12");
+            let monthn = months[d2.getMonth()];
+            document.getElementById("getmonth").innerHTML = "The month is: " + monthn;
+            //get day
+            document.getElementById("getday").innerHTML = "The day is: " + d2.getDay();
+            //date.now
+            const minute = 1000 * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+            const year1 = day * 365;
+          // Divide Date.now() with a year
+          let years = Math.round(Date.now() / year1);
+          document.getElementById("date.now").innerHTML = years;
+          //pi
+          document.getElementById("pi").innerHTML="PI: " + Math.PI;
+          //natural log
+          document.getElementById("nl").innerHTML="NL: " + Math.LN10;
+          //square root
+          document.getElementById("sr").innerHTML="Square Root: " + Math.SQRT2;
+          //number to integer
+          document.getElementById("round").innerHTML="Round: " + Math.round(9.6);
+          document.getElementById("ceil").innerHTML="Ceil: " + Math.ceil(8.8);
+          document.getElementById("floor").innerHTML="Floor: " + Math.floor(-9.2);
+          document.getElementById("trunc").innerHTML="Trunc: " + Math.trunc(9.2);
+          document.getElementById("sign").innerHTML="Sign: " + Math.sign(-6);
+          document.getElementById("power").innerHTML="Power: " + Math.pow(6,4);
+          document.getElementById("abs").innerHTML="Absolute: " + Math.abs(-2.4);
+          document.getElementById("random").innerHTML="Random: " + Math.floor(Math.random()*1000);
+          //comparisons
+          function myFunction() {
+            let voteable;
+            let age = document.getElementById("age").value;
+            if (isNaN(age)) {
+              voteable = "Input is not a number";
+            } else {
+                console.log("age",age);
+
+              voteable = (age < 18) ? "Too young" : "Old enough";
+              console.log("voteable",voteable);
+            }
+            document.getElementById("demo").innerHTML = voteable + " to vote";
+          }
+
+
+
+            
+
+
+        </script>
+    </body>
+</html>
