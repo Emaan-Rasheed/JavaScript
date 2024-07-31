@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Github APi</title>
+        <style>
+            .main-content{
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                border: 1px;
+                padding: 20px;
+                height:fit-content;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .main-content input {
+                margin-bottom: 10px;
+                padding: 10px;
+                width: 300px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            
+            .main-content button {
+                padding: 10px 20px;
+                border: none;
+                background-color:aqua;
+                color:black;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .main-content button:hover {
+                background-color: #0c75bb;
+                color:aliceblue;
+            }
+            .user-Info{
+                color:white;
+                text-align: center;
+                font-family:'Times New Roman', Times, serif;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="main-content">
+            <input type="text" id="username" placeholder="Enter GitHub username..." required>
+            <button onclick="myfunction()">Search</button>
+        </div>
+        <div id="user-info">
+            <h2>User Info:</h2>
+            <p id="name">Username:</p>
+            <p id="followers">Followers:</p>
+            <p id="repos">Repositories:</p>
+            <p id="bio">Bio:</p>
+            <p id="id">Id:</p>
+        </div>
+        <script>
+            async function myfunction() {
+                const username = document.getElementById('username').value;
+                if (username) {
+                    try {
+                        
+                        const response = await fetch(`https://api.github.com/users/${username}`);
+                        if (!response.ok) {
+                            throw new Error(`Error: ${response.statusText}`);
+                        }
+                        const userData = await response.json();
+                        document.getElementById('name').innerHTML = "Username: " + userData.name;
+                        document.getElementById('followers').innerHTML = "Followers: " + userData.followers;
+                        document.getElementById('repos').innerHTML ="Repositories: " + userData.public_repos;
+                        document.getElementById('bio').innerHTML ="Bio: " + userData.bio;
+                        document.getElementById('id').innerHTML ="ID: " + userData.id;
+                        console.log(userData);
+                        
+                    } catch (error) {
+                        console.error('Failed to fetch user data:', error);
+                    }
+                }
+            }
+        </script>
+    </body>
+    
+</html>

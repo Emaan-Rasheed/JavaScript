@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loops in JS</title>
+    </head>
+    <body>
+        <h1>If-else</h1>
+        <p id="if-else"></p>
+        <h1>Switch</h1>
+        <p id="switch"></p>
+        <h1>For Loop</h1>
+        <p id="for"></p>
+        <h1>Loop Scope</h1>
+        <p id="var"></p>
+        <p id="let"></p>
+        <h1>For In Loop</h1>
+        <p id="for-in"></p>
+        <h1>For Of Loop</h1>
+        <p id="for-of"></p>
+        <h1>Do-While Loop</h1>
+        <p id="do-while"></p>
+        <h1>Continue Statement</h1>
+        <p id="continue"></p>
+
+        <script>
+            //if-else ...
+            const hour = new Date().getHours();
+            let greeting;
+            if(hour<18){
+                greeting="Good Day";
+            }
+            else if(hour<10){
+                greeting="Good Morning";
+            }
+            else{
+                greeting="Good Evening";
+            }
+            document.getElementById("if-else").innerHTML=greeting;
+            //switch
+            let Day;
+            switch (new Date().getDay()){
+                case 0:
+                Day= "Sunday";
+                break;
+                case 1:
+                Day= "Monday";
+                break;
+                case 2:
+                Day= "Tuesday";
+                break;
+                case 3:
+                Day= "Wednesday";
+                break;
+                case 4:
+                Day= "Thursday";
+                break;
+                case 5:
+                Day= "Friday";
+                break;
+                case 6:
+                Day= "Saturday";
+                break;
+                default:
+                Day="Looking forward to the weekend";
+            }
+            document.getElementById("switch").innerHTML="Today is: " + Day;
+            //for loop
+            const cars=["BMW","Volvo","Saab","Ford","Fiat","Audi"]
+            let text="";
+            for(let i=0;i<cars.length;i++){
+                text += cars[i] + "<br>";
+            }
+            document.getElementById("for").innerHTML=text;
+            //loop scope
+            var i=8;
+            for(var i=0;i<10;i++){}
+            document.getElementById("var").innerHTML="Var i value is: " + i;
+            let j=6;
+            for(let j=0;j<10;j++){}
+            document.getElementById("let").innerHTML="Let i value is: " + j;
+            //for in
+            const person = {fname:"John", lname:"Doe", age:10}; 
+            let txt = "";
+            for (let x in person) {
+            txt += person[x] + " ";}
+            document.getElementById("for-in").innerHTML=txt;
+            //For of
+            let language = "JavaScript";
+            let text1 = "";
+            for (let x of language) {
+                text1 += x + "<br>";}
+            document.getElementById("for-of").innerHTML=text1;
+            //do-while
+            let text2 = "";
+            let m = 0;
+            do {
+                 text2 += "<br>The number is " + m;
+                 m++;}
+            while (m < 10);  
+            document.getElementById("do-while").innerHTML = text2;
+            //continue
+            let text3="";
+            for (let y = 0; y < 10; y++) {
+                if (y === 5) { continue; }
+                text3 += "The number is " + y + "<br>";
+              }
+            document.getElementById("continue").innerHTML = text3;
+        </script>
+    </body>
+</html>

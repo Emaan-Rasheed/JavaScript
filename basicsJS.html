@@ -61,7 +61,7 @@
             let txt="";
             
             number1.forEach((a,index) =>{
-                console.log(a.name+ "" +a.uni +"--------"+index)
+                (a.name+ "" +a.uni +"--------"+index)
                 txt += a.name +" "+ a.uni + "   " + index +"<br>";
             });
             document.getElementById("foreach").innerHTML=txt;
@@ -69,7 +69,7 @@
               //  txt += value +"<br>";
             //}
             //map
-            const number2 =number1.map((b,index1)=>{console.log(b.name + "map" + b.uni+ "   " +index1+"<br>")} );
+            const number2 =number1.map((b,index1)=>{(b.name + "map" + b.uni+ "   " +index1+"<br>")} );
             document.getElementById("map").innerHTML=number2;
         
                // return value *  3;
@@ -80,9 +80,11 @@
             const newarr =arr.flatMap((x) => x*2);
             document.getElementById("flatmap").innerHTML=newarr;
             //filter
-            const randomnum=[20,70,40,67,2,8,0.13,19]
-            const over18=randomnum.filter(over18fun);
+          
+            const randomnum=[20,70,40,67,2,8,0.13,19];
+            const over18=randomnum.filter((f,index)=>{console.log(f>18)});
             document.getElementById("filter").innerHTML=over18;
+            
             function over18fun(value,index,array){
                 return value > 18;
             }

@@ -33,23 +33,64 @@
         }
         .main-content button:hover {
             background-color: #383d39;
+            color:aliceblue;
         }
+        .result{
+            color:white;
+            text-align: center;
+            font-family:'Times New Roman', Times, serif;
+        }
+        
+        .overcast{
+            background-image: url('overcast.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .light-rain{
+            background-image: url('rain.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .sunny{
+            background-image: url('sunny.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
 
+        }
+        .brokenclouds{
+            background-image: url('brokenclouds.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .scattered{
+            background-image: url('scattered.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .default{
+            background-image: url('bggg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 </head>
-<body>
+<body id="myDIV">
 <div class="main-content">
     <input type="text" id="city" placeholder="Enter a city ...">
     <button onclick="myfunction()">Search</button>
 </div>
-<div id="result">
+<div class="result" id="result">
     <h2 id="country"></h2>
     <h2 id="city"></h2>
     <h2 id="Desc"></h2>
     <h2 id="temp"></h2>
+    <h2 id="cordlong"></h2>
+    <h2 id="cordlat"></h2>
+    <h2 id="time"></h2>
     <h2 id="icon"></h2>
 </div>
     <script>
+       document.body.style.backgroundImage = "url('bggg.jpg')"
         function myfunction(){
             const city = document.getElementById('city').value;
             const apiKey = "0c309aff29364454354a4b94ab9ot995";
@@ -63,15 +104,48 @@
           return response.json();
         })
         .then(data => {
+            var element = document.getElementById("myDIV");
+           // element.classList.add("mystyle");
+            const list = element.classList;
+            list.remove(list[0]);
+            console.log(list,"list");
+            if(data.condition.description== "overcast clouds"){
+                element.classList.add("overcast");
+        }
+            else if(data.condition.description== "broken clouds"){
+                element.classList.add("brokenclouds");
+               // document.body.style.backgroundImage = "url('brokenclouds.jpg')"
+            }
+            else if(data.condition.description== "sunny"){
+                element.classList.add("sunny");
+                //document.body.style.backgroundImage = "url('sunny.jpg')"
+            }
+            else if(data.condition.description== "light rain"){
+                element.classList.add("light-rain");
+
+               // document.body.style.backgroundImage = "url('rain.jpg')"
+            }
+            else if(data.condition.description== "scattered clouds"){
+                element.classList.add("scattered");
+               // document.body.style.backgroundImage = "url('scattered.jpg')"
+            }else{
+                document.body.style.backgroundImage = "url('bggg.jpg')"
+                element.classList.add("default");
+            }
             document.getElementById("country").innerHTML="Country: " + data.country;
             document.getElementById("Desc").innerHTML="Description: " + data.condition.description;
             document.getElementById("temp").innerHTML="Temp: " + data.temperature.current;
-           document.getElementById("icon").innerHTML = "Icon: " +"<br>"+ "<img src='" +
+            document.getElementById("cordlong").innerHTML="Longitudes: " + data.coordinates.longitude;
+            document.getElementById("cordlat").innerHTML="Latitudes: " + data.coordinates.latitude;
+            document.getElementById("time").innerHTML="Time: " + data.time;
+            document.getElementById("icon").innerHTML = "Icon: " +"<br>"+ "<img src='" +
             data.condition.icon_url + "'>";
             console.log(data);
-          //Console.log(('Data received:', data));
-          //Console.log(('Data received:', data.city));
-          //Console.log(('Data received:', data.condition.description));
+            let time = new Date().getTime();
+            console.log("Milliseconds = "+ time);
+
+            let date = new Date(time);
+           console.log("Milliseconds = "+ date.toString());
         })
         .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
